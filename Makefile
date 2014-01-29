@@ -314,13 +314,8 @@ clean: | $(CLEAN_TARGETS)
 	done
 	@rm -f julia
 	@rm -f *~ *# *.tar.gz
-<<<<<<< HEAD
-	@rm -fr $(BUILD)/$(JL_PRIVATE_LIBDIR)
-	@rm -f source-dist.tmp source-dist.tmp1
-=======
-	@rm -f $(build_bindir)/stringpatch
+	@rm -f $(build_bindir)/stringpatch source-dist.tmp source-dist.tmp1
 	@rm -fr $(build_private_libdir)
->>>>>>> Revamp Makefiles to better conform to common packaging guidelines
 # Temporarily add this line to the Makefile to remove extras
 	@rm -fr $(build_datarootdir)/julia/extras
 
