@@ -914,6 +914,7 @@ mmat = 100
 nmat = 80
 for elty in (Float16, Float32, Float64, BigFloat, Complex{Float16}, Complex{Float32}, Complex{Float64}, Complex{BigFloat}, Int32, Int64, BigInt)
     debug && println(elty)
+
     ## Vector
     x = ones(elty,10)
     xs = sub(x,1:2:10)
@@ -932,6 +933,13 @@ for elty in (Float16, Float32, Float64, BigFloat, Complex{Float16}, Complex{Floa
     @test_approx_eq norm(xs, 3) cbrt(5)
     @test_approx_eq norm(xs, Inf) 1
 
+    ## Number
+    norm(x[1:1]) === norm(x[1], -Inf)
+    norm(x[1:1]) === norm(x[1], 0)
+    norm(x[1:1]) === norm(x[1], 1)
+    norm(x[1:1]) === norm(x[1], 2)
+    norm(x[1:1]) === norm(x[1], Inf)
+    
     for i = 1:10    
         x = elty <: Integer ? convert(Vector{elty}, rand(1:10, nnorm)) : 
             elty <: Complex ? convert(Vector{elty}, complex(randn(nnorm), randn(nnorm))) : 
